@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Aside from "./components/Aside";
+import Search from "./components/Search";
+
+import Home from "./pages/Home";
+import Mymusic from "./pages/Mymusic";
+import ChartList from "./pages/ChartList";
+import PlayList from "./pages/PlayList";
+import MusicPlayerProvider from "./context/MusicPlayerProvider";
+
+const App = () => {
+    return (
+        <MusicPlayerProvider>
+            <BrowserRouter>
+                <Header />
+                <Main>
+                    <Search />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/mymusic" element={<Mymusic />} />
+                        <Route path="/playlist/:id" element={<PlayList />} />
+                        <Route path="/chart/:id" element={<ChartList />} />
+                    </Routes>
+                </Main>
+                <Aside />
+            </BrowserRouter>
+        </MusicPlayerProvider>
+    );
+};
 
 export default App;
+
+
+
+
+
+
+
+
+

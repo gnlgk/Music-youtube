@@ -1,0 +1,54 @@
+:root {
+    --fontJ: "dongdong";
+    --fontE: "kotraHope";
+
+    --mainBg: #F5F7F8;
+    --pointColor: #F4CE14;
+    --pointBg: #ededff;
+
+    --primaryColor: #495E57; /* 새로운 주요 색상 */
+    --secondaryColor: #45474B; /* 새로운 보조 색상 */
+    --accentColor: #F4CE14; /* 강조 색상 */
+    --backgroundLight: #F5F7F8; /* 밝은 배경색 */
+
+    --black: #000;
+    --black100: #111;
+    --black200: #222;
+    --black300: #333;
+    --black400: #444;
+    --black500: #555;
+    --black600: #666;
+    --black700: #797979;
+
+    --white: #fff;
+    --white100: #f9f9f9;
+    --white200: #eeeeee;
+    --white300: #dfdfdf;
+    --white400: #cfcfcf;
+    --white500: #c0c0c0;
+
+    --textColor: #45474B; /* 기본 텍스트 색상 */
+    --textColorLight: #666; /* 밝은 텍스트 색상 */
+    --borderColor: #DFDFDF; /* 테두리 색상 */
+    --imageBg: #EEEEEE; /* 이미지 배경색 */
+    --hoverBgColor: #F4CE14; /* 호버 배경색 */
+    --currentTrackBg: #495E57; /* 현재 트랙 배경색 */
+
+    /* 폰트 셋팅 */
+    font-family: var(--fontE);
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+
+    /* 폰트 최적화 */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    @media (max-width: 800px) {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}

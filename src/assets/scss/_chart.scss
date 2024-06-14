@@ -1,0 +1,209 @@
+.music-chart {
+    padding: 0 2rem 2rem;
+    position: relative;
+    background-color: var(--backgroundLight);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    > .title {
+        font-weight: 900;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--borderColor);
+
+        h2 {
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--primaryColor);
+        }
+
+        .date {
+            button {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                color: var(--primaryColor);
+
+                svg {
+                    vertical-align: -2px;
+                    margin-right: 5px;
+                }
+
+                span {
+                    font-family: var(--fontJ);
+                    font-weight: 400;
+                }
+
+                &:hover {
+                    color: var(--secondaryColor);
+                }
+            }
+        }
+    }
+
+    > .list {
+        ul {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            list-style: none;
+
+            li {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+                padding: 10px 20px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-family: var(--fontJ);
+                font-weight: 400;
+                transition: background-color 0.3s, box-shadow 0.3s;
+
+                .rank {
+                    flex: 0 0 30px;
+                    color: var(--textColor);
+                }
+
+                .img {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 15px;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .title {
+                    flex: 1;
+                    color: var(--textColor);
+                }
+
+                .album {
+                    margin-left: auto;
+                    color: var(--textColorLight);
+                    font-size: 14px;
+                }
+
+                &:hover {
+                    background-color: var(--hoverBgColor);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                    .album {
+                        color: var(--textColor);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.youtube-result {
+    position: fixed;
+    left: 260px;
+    right: 400px;
+    bottom: 0;
+    height: 370px;
+    background-color: var(--secondaryColor);
+    padding: 2rem;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -4px 6px var(--accentColor);
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--backgroundLight);
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            font-family: var(--fontJ);
+            font-weight: 400;
+            height: 50px;
+            transition: background-color 0.3s;
+
+            .img {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                margin-right: 10px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .title {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: var(--backgroundLight);
+                &:hover {
+                    color: var(--textColor);
+                }
+            }
+
+            .playNow, .listAdd, .chartAdd {
+                padding: 10px;
+                margin-top: 8px;
+                cursor: pointer;
+                font-size: 20px;
+                color: var(--backgroundLight);
+
+                &:hover {
+                    color: var(--secondaryColor);
+                }
+            }
+
+            &:hover {
+                background-color: var(--hoverBgColor);
+                
+            }
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        color: var(--backgroundLight);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            font-size: 16px;
+        }
+
+        &:hover {
+            color: var(--textColorLight);
+        }
+    }
+}
