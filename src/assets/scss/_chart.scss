@@ -64,6 +64,12 @@
                 font-family: var(--fontJ);
                 font-weight: 400;
                 transition: background-color 0.3s, box-shadow 0.3s;
+                .playlist-name{
+                    margin: 0 auto;
+                    font-size: 3vh;
+                    font-weight: bold;
+                    color: var(--secondaryColor);
+                }
 
                 .rank {
                     flex: 0 0 30px;
@@ -87,6 +93,18 @@
                 .title {
                     flex: 1;
                     color: var(--textColor);
+                }
+                .deleteButton {
+                    padding: 5px 16px;
+                    border: none;
+                    background-color: var(--secondaryColor);
+                    color: var(--white);
+                    border-radius: 5px;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        background-color: var(--primaryColor);
+                    }
                 }
 
                 .album {

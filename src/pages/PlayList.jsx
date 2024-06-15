@@ -5,24 +5,38 @@ import Chart from '../components/Chart';
 const Playlist = () => {
     const { id } = useParams();
     const [playlist, setPlaylist] = useState({ name: '', items: [] });
+    const [loading, setLoading] = useState(true);
+
+    
 
     useEffect(() => {
-        const storedPlaylist = JSON.parse(localStorage.getItem(id)) || { name: '', items: [] };
-        setPlaylist(storedPlaylist);
+        try {
+            const storedPlaylist = JSON.parse(localStorage.getItem(id)) || { name: '', items: [] };
+            setPlaylist(storedPlaylist);
+        } catch (error) {
+            console.error("Failed to parse playlist from localStorage:", error);
+            setPlaylist({ name: '', items: [] });
+        } finally {
+            setLoading(false);
+        }
     }, [id]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <section id="playlist">
             {playlist.items.length > 0 ? (
                 <Chart
-                    title={`${playlist.name} 리스트`}
+                    title={`${playlist.name} List`}
                     data={playlist.items}
                     showCalendar={false}
                 />
             ) : (
                 <section className='music-chart'>
                     <div className="title">
-                        <h2>😜 {`${playlist.name}`}</h2>
+                        <h2>🎶 {`${playlist.name}`}</h2>
                     </div>
                     <div className="list">
                         <ul>

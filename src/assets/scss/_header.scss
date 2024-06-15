@@ -137,6 +137,8 @@
                 color: inherit;
                 text-decoration: none;
                 transition: color 0.3s;
+                flex-wrap: wrap;
+                overflow: hidden;
 
                 &:hover {
                     color: var(--primaryColor);
@@ -149,7 +151,6 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 display: inline-block;
-                margin-right: 14px;
                 border-radius: 3px;
             }
 
@@ -164,6 +165,7 @@
                 &:hover {
                     background-color: var(--primaryColor);
                 }
+                
             }
 
             .text__box {
@@ -185,13 +187,13 @@
                 color: var(--white);
                 border-radius: 5px;
                 cursor: pointer;
+
+                
             }
-            
-            .text__box button:hover {
-                background-color: var(--primaryColor);
+                            
             }
         }
-    }
+    
     
    
     

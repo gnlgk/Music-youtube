@@ -18,6 +18,8 @@ const MusicPlayerProvider = ({ children }) => {
     // 반복 재생 모드 상태를 저장할 상태 변수
     const [isRepeating, setIsRepeating] = useState(false);
 
+    
+
     // 컴포넌트가 처음 마운트될 때 음악 데이터를 불러옵니다.
     useEffect(() => {
         const fetchData = async () => {
@@ -107,6 +109,11 @@ const MusicPlayerProvider = ({ children }) => {
         setMusicData((prevMusicData) => [...prevMusicData, track]);
     };
 
+    // 재생 목록을 초기화하는 함수
+    const clearMusicData = () => {
+        setMusicData([]);
+    };
+
     return (
         <MusicPlayerContext.Provider 
         value={{ 
@@ -127,7 +134,8 @@ const MusicPlayerProvider = ({ children }) => {
             toggleRepeat,  // 반복 재생 모드를 토글하는 함수
             handleTrackEnd, // 트랙이 끝났을 때 호출되는 함수
             addTrackToList,
-            addTrackToEnd
+            addTrackToEnd,
+            clearMusicData // 재생 목록을 초기화하는 함수
         }}>
             {children}
         </MusicPlayerContext.Provider>

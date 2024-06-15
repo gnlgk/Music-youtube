@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FcRating, FcPlus, FcApproval, FcCancel } from "react-icons/fc";
+import { FcRating, FcPlus, FcApproval } from "react-icons/fc";
 import { GiMusicalNotes } from "react-icons/gi";
 
 const Header = () => {
@@ -54,8 +54,7 @@ const Header = () => {
         playlistLinks.push(
             <li key={i}>
                 <Link to={`/playlist/${playlistKey}`}><span className='icon2'><FcApproval /></span>{playlist.name}</Link>
-                {/* 버튼 태그와 삭제 아이콘을 함께 사용 */}
-                <button onClick={() => deletePlaylist(playlistKey)}><FcCancel /></button>
+                <button onClick={() => deletePlaylist(playlistKey)}>Del</button>
             </li>
         );
     }

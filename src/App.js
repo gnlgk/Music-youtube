@@ -21,7 +21,7 @@ const App = () => {
                     <Search />
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/mymusic" element={<Mymusic />} />
+                        <Route path="/mymusic/" element={<Mymusic />} />
                         <Route path="/playlist/:id" element={<PlayList />} />
                         <Route path="/chart/:id" element={<ChartList />} />
                     </Routes>

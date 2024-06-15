@@ -11,6 +11,7 @@ import { RiPlayListFill } from "react-icons/ri";
 
 import { MdFormatListBulletedAdd, MdOutlinePlayCircleFilled, MdClose, MdHive } from 'react-icons/md';
 import { MusicPlayerContext } from '../context/MusicPlayerProvider';
+import { useParams } from 'react-router-dom';
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
@@ -20,12 +21,15 @@ const CustomInput = forwardRef(({ value, onClick }, ref) => (
 ));
 
 const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDate, data }) => {
-    const { addTrackToList, addTrackToEnd, playTrack } = useContext(MusicPlayerContext);
+    const { id } = useParams();
+    // console.log(myid)
 
+    const { addTrackToList, addTrackToEnd, playTrack, clearMusicData} = useContext(MusicPlayerContext);
     const [youtubeResults, setYoutubeResults] = useState([]);
     const [selectedTitle, setSelectedTitle] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedTrack, setSelectedTrack] = useState(null);
+    const [chartData, setChartData] = useState(data);
 
     const searchYoutube = async (query) => {
         try {
@@ -44,6 +48,19 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
         }
     };
 
+    const handlePlayAll = () => {
+        // 현재 재생 목록을 초기화합니다.
+        clearMusicData([]);
+        
+        // chartData에 있는 각 항목을 플레이어에 추가합니다.
+        data.forEach(item => {
+            addTrackToEnd(item);
+        });
+        
+        // 재생 목록의 첫 번째 트랙을 재생합니다.
+        playTrack(0);
+    };
+    
     const handleItemClick = (title) => {
         setSelectedTitle(title);
         searchYoutube(title);
@@ -92,6 +109,31 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
         }
     };
 
+    const handleDeleteItem = (playlistId, title, index) => {
+        const playlist = JSON.parse(localStorage.getItem(playlistId));
+        const newData = [...chartData];
+        newData.splice(index, 1);
+        setChartData(newData);
+
+        if (playlist) {
+            const updatedItems = playlist.items.filter(item => item.title !== title);
+            playlist.items = updatedItems;
+            localStorage.setItem(playlistId, JSON.stringify(playlist));
+        }
+
+        toast.success('항목을 삭제했습니다.');
+    };
+
+    const isUserCreatedFolder = (folderId) => {
+            const userCreatedFolders = localStorage.getItem(folderId);
+
+        if (userCreatedFolders) {
+            // 데이터가 존재하는 경우
+            return true;
+            // 데이터 사용
+        }
+    };
+    console.log(id)
     return (
         <>
             <section className='music-chart'>
@@ -109,6 +151,10 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
                             />
                         </div>
                     )}
+                    
+                    {isUserCreatedFolder(id) && (
+                    <button onClick={handlePlayAll}>전체목록재생하기</button>
+                     )}
                 </div>
                 <div className="list">
                     <ul>
@@ -117,6 +163,9 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
                                 <span className='rank'>#{item.rank}</span>
                                 <span className='img' style={{ backgroundImage: `url(${item.imageURL})` }}></span>
                                 <span className='title'>{item.title}</span>
+                                {isUserCreatedFolder(id) && (
+                                <button className='deleteButton' onClick={() => handleDeleteItem(id, item.title, index)}>Del</button> 
+                                )}
                             </li>
                         ))}
                     </ul>

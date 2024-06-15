@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { MdClose} from 'react-icons/md';
+
 const Modal = ({ isOpen, onClose, onAddToPlaylist }) => {
     const [playlists, setPlaylists] = useState([]);
 
@@ -28,7 +30,7 @@ const Modal = ({ isOpen, onClose, onAddToPlaylist }) => {
     return (
         <div className="modal">
             <div className="modal-content">
-                <span className="close" onClick={onClose}>&times;</span>
+                <span className="close" onClick={onClose}><MdClose /></span>
                 <h2>플레이리스트 선택</h2>
                 <ul>
                     {playlists.map((playlist) => (
