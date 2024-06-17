@@ -17,6 +17,7 @@ const MusicPlayerProvider = ({ children }) => {
     const [isShuffling, setIsShuffling] = useState(false);
     // 반복 재생 모드 상태를 저장할 상태 변수
     const [isRepeating, setIsRepeating] = useState(false);
+    
 
     
 
@@ -27,7 +28,7 @@ const MusicPlayerProvider = ({ children }) => {
                 const response = await fetch(`./music-data/Seoyeon.json`);
                 const data = await response.json();
                 setMusicData(data);
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.error('데이터를 가져오는데 실패했습니다.', error);
             }

@@ -1,10 +1,10 @@
-import React, { forwardRef, useContext, useState } from 'react'
+import React, { forwardRef, useContext, useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Modal from './Modal'
+import Modal from './Modal';
 
 import { FcCalendar } from 'react-icons/fc';
 import { RiPlayListFill } from "react-icons/ri";
@@ -21,15 +21,23 @@ const CustomInput = forwardRef(({ value, onClick }, ref) => (
 ));
 
 const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDate, data }) => {
-    const { id } = useParams();
-    // console.log(myid)
+    const { id} = useParams();
+    const { searchKeyword } = useParams();
 
-    const { addTrackToList, addTrackToEnd, playTrack, clearMusicData} = useContext(MusicPlayerContext);
+    const { addTrackToList, addTrackToEnd, playTrack, clearMusicData } = useContext(MusicPlayerContext);
+
     const [youtubeResults, setYoutubeResults] = useState([]);
     const [selectedTitle, setSelectedTitle] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedTrack, setSelectedTrack] = useState(null);
     const [chartData, setChartData] = useState(data);
+
+    useEffect(() => {
+        if (searchKeyword) {
+            console.log("Searching for:", searchKeyword);
+            searchYoutube(searchKeyword);
+        }
+    }, [searchKeyword]);
 
     const searchYoutube = async (query) => {
         try {
@@ -49,18 +57,13 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
     };
 
     const handlePlayAll = () => {
-        // 현재 재생 목록을 초기화합니다.
         clearMusicData([]);
-        
-        // chartData에 있는 각 항목을 플레이어에 추가합니다.
         data.forEach(item => {
             addTrackToEnd(item);
         });
-        
-        // 재생 목록의 첫 번째 트랙을 재생합니다.
         playTrack(0);
     };
-    
+
     const handleItemClick = (title) => {
         setSelectedTitle(title);
         searchYoutube(title);
@@ -107,6 +110,7 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
             playlist.items.push(selectedTrack);
             localStorage.setItem(playlistId, JSON.stringify(playlist));
         }
+        setIsModalOpen(false);
     };
 
     const handleDeleteItem = (playlistId, title, index) => {
@@ -125,15 +129,10 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
     };
 
     const isUserCreatedFolder = (folderId) => {
-            const userCreatedFolders = localStorage.getItem(folderId);
-
-        if (userCreatedFolders) {
-            // 데이터가 존재하는 경우
-            return true;
-            // 데이터 사용
-        }
+        const userCreatedFolders = localStorage.getItem(folderId);
+        return !!userCreatedFolders;
     };
-    console.log(id)
+
     return (
         <>
             <section className='music-chart'>
@@ -151,20 +150,22 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
                             />
                         </div>
                     )}
-                    
                     {isUserCreatedFolder(id) && (
-                    <button onClick={handlePlayAll}>전체목록재생하기</button>
-                     )}
+                        <button onClick={handlePlayAll}>전체목록재생하기</button>
+                    )}
                 </div>
                 <div className="list">
                     <ul>
-                        {data.map((item, index) => (
+                        {chartData.map((item, index) => (
                             <li key={index} onClick={() => handleItemClick(item.title)}>
                                 <span className='rank'>#{item.rank}</span>
                                 <span className='img' style={{ backgroundImage: `url(${item.imageURL})` }}></span>
                                 <span className='title'>{item.title}</span>
                                 {isUserCreatedFolder(id) && (
-                                <button className='deleteButton' onClick={() => handleDeleteItem(id, item.title, index)}>Del</button> 
+                                    <button className='deleteButton' onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleDeleteItem(id, item.title, index);
+                                    }}>Del</button>
                                 )}
                             </li>
                         ))}
@@ -199,9 +200,10 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onAddToPlaylist={handleAddToPlaylist}
+                track={selectedTrack} // 선택된 트랙을 모달에 전달
             />
         </>
-    )
-}
+    );
+};
 
-export default Chart
+export default Chart;
