@@ -7,8 +7,6 @@ const Playlist = () => {
     const [playlist, setPlaylist] = useState({ name: '', items: [] });
     const [loading, setLoading] = useState(true);
 
-    
-
     useEffect(() => {
         try {
             const storedPlaylist = JSON.parse(localStorage.getItem(id)) || { name: '', items: [] };

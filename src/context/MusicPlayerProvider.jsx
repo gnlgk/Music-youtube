@@ -17,9 +17,8 @@ const MusicPlayerProvider = ({ children }) => {
     const [isShuffling, setIsShuffling] = useState(false);
     // 반복 재생 모드 상태를 저장할 상태 변수
     const [isRepeating, setIsRepeating] = useState(false);
-    
-
-    
+    // 볼륨
+    const [volume, setVolume] = useState(50);               // 볼륨
 
     // 컴포넌트가 처음 마운트될 때 음악 데이터를 불러옵니다.
     useEffect(() => {
@@ -115,6 +114,10 @@ const MusicPlayerProvider = ({ children }) => {
         setMusicData([]);
     };
 
+    //볼륨
+    const handleVolume = (e) => setVolume(parseInt(e.target.value, 10) / 100);
+
+
     return (
         <MusicPlayerContext.Provider 
         value={{ 
@@ -125,6 +128,7 @@ const MusicPlayerProvider = ({ children }) => {
             duration,  // 트랙의 총 길이
             isShuffling,
             isRepeating,
+            volume,
             playTrack,  // 특정 트랙을 재생하는 함수
             pauseTrack,  // 현재 트랙을 일시 정지하는 함수
             nextTrack,  // 다음 트랙으로 넘어가는 함수
@@ -136,7 +140,8 @@ const MusicPlayerProvider = ({ children }) => {
             handleTrackEnd, // 트랙이 끝났을 때 호출되는 함수
             addTrackToList,
             addTrackToEnd,
-            clearMusicData // 재생 목록을 초기화하는 함수
+            clearMusicData, // 재생 목록을 초기화하는 함수
+            handleVolume
         }}>
             {children}
         </MusicPlayerContext.Provider>

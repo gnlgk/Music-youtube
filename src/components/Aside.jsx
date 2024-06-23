@@ -20,7 +20,9 @@ const Aside = () => {
         isShuffling,
         toggleRepeat,
         isRepeating,
-        handleTrackEnd
+        handleTrackEnd,
+        volume,
+        handleVolume
     } = useContext(MusicPlayerContext);
 
     const currentTrackRef = useRef(null);
@@ -90,6 +92,7 @@ const Aside = () => {
                                 onEnded={handleTrackEndModified}
                                 onProgress={handleProgress}
                                 onDuration={handleDuration}
+                                volume={volume}
                             />
                         )}
                     </div>
@@ -134,6 +137,16 @@ const Aside = () => {
                             <IoRepeat />
                         </span>
                     </div>
+                    <div className='volume'>
+                    <input
+                        type='range'
+                        min='0'
+                        max='100'
+                        step='1'
+                        value={volume * 100}
+                        onChange={handleVolume}
+                    />
+                </div>
                 </div>
             </div>
 

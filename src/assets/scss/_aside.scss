@@ -2,24 +2,25 @@
     position: fixed;
     right: 0;
     top: 0;
-    width: 400px;
+    width: 350px;
     height: 100vh;
     background-color: var(--hoverBgColor);
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     .play-now {
         padding: 1rem 2rem;
         border-bottom: 1px solid var(--borderColor);
-        height: 550px;
 
         h2 {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-family: var(--fontJ);
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-weight: 300;
+            margin-bottom: 10px;
             color: var(--primaryColor);
 
             svg {
@@ -39,15 +40,24 @@
                 background-position: center;
                 position: relative;
                 margin-bottom: 15px;
+
+                &::after {
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    background-color: transparent;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
             }
 
             .title {
-                color: var(--primaryColor);
+                color: var(--black);
                 font-size: 20px;
                 font-weight: 700;
                 display: block;
                 text-align: center;
-                margin-bottom: 5px;
             }
 
             .artist {
@@ -55,12 +65,11 @@
                 color: var(--textColorLight);
                 font-weight: 500;
                 display: block;
-                margin-top: 5px;
             }
         }
 
         .progress {
-            margin-top: 20px;
+            margin-top: 10px;
 
             .progress-bar {
                 input {
@@ -98,7 +107,7 @@
         .controls {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 10px;
 
             .shuffle.active,
             .repeat.active {
@@ -140,31 +149,42 @@
         }
 
         .volume {
-            text-align: center;
-            margin-top: 20px;
+            padding: 0 50px;
+            margin-top: 10px;
 
             input {
-                width: 80%;
-                margin: 0 auto;
-                background: linear-gradient(90deg, #45474B 0%, #495E57 100%);
-                height: 3px;
+                width: 100%;
+                -webkit-appearance: none;
+                appearance: none;
+                background-color:var(--imageBg);
+                height: 5px;
                 border-radius: 5px;
-                accent-color: #495E57;
+                outline: none;
+
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    background: var(--primaryColor);
+                    cursor: pointer;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+                }
             }
         }
     }
 
     .play-list {
         padding: 2rem;
-        height: calc(100vh - 490px);
         overflow-y: auto;
 
         h3 {
             text-align: center;
             font-size: 1.25rem;
             font-family: var(--fontJ);
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-weight: 300;
+            margin-bottom: 10px;
             color: var(--primaryColor);
 
             svg {
@@ -179,11 +199,11 @@
 
             li {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
                 border-radius: 50px;
-                padding: 10px;
                 cursor: pointer;
                 transition: background-color 0.3s;
 
@@ -208,7 +228,7 @@
                     color: var(--black);
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    white-space: nowrap;
+                    white-space: wrap;
                 }
 
                 &:hover {
@@ -247,5 +267,22 @@
                 }
             }
         }
+    }
+
+     /* Custom scrollbar styles */
+     .play-list::-webkit-scrollbar {
+        /* 스크롤바 너비 */
+        width: 8px;
+    }
+
+    .play-list::-webkit-scrollbar-track {
+        /* 스크롤바 트랙 */
+        background: var(--pointColor);
+    }
+
+    .play-list::-webkit-scrollbar-thumb {
+        /* 스크롤바 엄지 */
+        background: var(--primaryColor);
+        border-radius: 4px;
     }
 }

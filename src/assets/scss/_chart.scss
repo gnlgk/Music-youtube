@@ -7,7 +7,7 @@
     
     > .title {
         font-weight: 900;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -45,6 +45,22 @@
             }
         }
     }
+    .alllist {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--primaryColor);
+            color: var(--white);
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--accentColor);  
+            }
+        }
+    }
 
     > .list {
         ul {
@@ -64,6 +80,7 @@
                 font-family: var(--fontJ);
                 font-weight: 400;
                 transition: background-color 0.3s, box-shadow 0.3s;
+                
                 .playlist-name{
                     margin: 0 auto;
                     font-size: 3vh;
@@ -129,7 +146,7 @@
 .youtube-result {
     position: fixed;
     left: 260px;
-    right: 400px;
+    right: 350px;
     bottom: 0;
     height: 370px;
     background-color: var(--secondaryColor);
