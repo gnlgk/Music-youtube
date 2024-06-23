@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
@@ -21,7 +21,7 @@ const CustomInput = forwardRef(({ value, onClick }, ref) => (
     </button>
 ));
 
-const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDate, data, searchKeyword }) => {
+const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDate, data }) => {
     const { id } = useParams(); // URL에서 차트리스트랑 플레이리스트의 id를 가져옵니다.
 
     const { addTrackToList, addTrackToEnd, playTrack, clearMusicData } = useContext(MusicPlayerContext); // 음악 플레이어 컨텍스트를 사용합니다.
@@ -31,7 +31,7 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
     const [isModalOpen, setIsModalOpen] = useState(false); // 모달 오픈 상태
     const [selectedTrack, setSelectedTrack] = useState(null); // 선택된 트랙 상태
     const [chartData, setChartData] = useState(data); // 차트 데이터 상태
-    // console.log(isModalOpen)
+    // console.log(chartData)
 
     // 유튜브 API를 사용하여 검색을 수행하는 함수(검색결과 모달창)
     const searchYoutube = async (query) => {
@@ -42,7 +42,7 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
                     q: query,
                     type: 'video',
                     maxResults: 5,
-                    key: process.env.REACT_APP_YOUTUBE_API_KEY,
+                    key: 'AIzaSyAe0158qTGe-yXh3Qq3FHJ1jIfH6g6AExA',
                 },
             });
             setYoutubeResults(response.data.items); // 검색 결과를 상태에 저장합니다.

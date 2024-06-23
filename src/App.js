@@ -10,7 +10,6 @@ import Home from "./pages/Home";
 import Mymusic from "./pages/Mymusic";
 import ChartList from "./pages/ChartList";
 import PlayList from "./pages/PlayList";
-import SearchList from "./pages/SearchList";
 import MusicPlayerProvider from "./context/MusicPlayerProvider";
 
 const App = () => {
@@ -25,7 +24,6 @@ const App = () => {
                         <Route path="/mymusic/" element={<Mymusic />} />
                         <Route path="/playlist/:id" element={<PlayList />} />
                         <Route path="/chart/:id" element={<ChartList />} />
-                        <Route path="/search/:searchKeyword" element={<SearchList />} />
                     </Routes>
                 </Main>
                 <Aside />

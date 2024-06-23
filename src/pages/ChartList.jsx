@@ -12,10 +12,10 @@ const ChartList = () => {
 
     const { id } = useParams();
     const [selectedDate, setSelectedDate] = useState(yesterday);
-
     const formattedDate = selectedDate.toISOString().split('T')[0];
     const url = `https://raw.githubusercontent.com/webs9919/music-best/main/${id}/${id}100_${formattedDate}.json`;
     const { data, loading, error } = useFetchData(url);
+    // console.log(data)
 
     if (loading) return <Loading loading={loading} />;
     if (error) return <Error message={error.message} />;

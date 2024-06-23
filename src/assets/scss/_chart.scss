@@ -5,6 +5,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     
+    
     > .title {
         font-weight: 900;
         margin-bottom: 10px;
@@ -69,6 +70,7 @@
             flex-direction: column;
             padding: 0;
             list-style: none;
+            
 
             li {
                 display: flex;
