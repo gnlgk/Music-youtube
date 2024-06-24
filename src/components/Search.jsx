@@ -29,7 +29,7 @@ const Search = () => {
                     q: keyword,
                     type: 'video',
                     maxResults: 5,
-                    key: 'AIzaSyAe0158qTGe-yXh3Qq3FHJ1jIfH6g6AExA',
+                    key: process.env.REACT_APP_YOUTUBE_API_KEY,
                 },
             });
 

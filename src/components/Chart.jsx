@@ -42,7 +42,7 @@ const Chart = ({ title, showCalendar, selectedDate, onDateChange, minDate, maxDa
                     q: query,
                     type: 'video',
                     maxResults: 5,
-                    key: 'AIzaSyAe0158qTGe-yXh3Qq3FHJ1jIfH6g6AExA',
+                    key: process.env.REACT_APP_YOUTUBE_API_KEY,
                 },
             });
             setYoutubeResults(response.data.items); // 검색 결과를 상태에 저장합니다.
