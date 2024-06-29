@@ -16,4 +16,44 @@
         font-family: var(--fontJ);
         font-weight: 300;
     }
+
+    .results {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        width: 100%;
+        max-width: 800px;
+
+        .result-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--white100);
+            padding: 15px;
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--white200);
+            }
+
+            img {
+                border-radius: 2px;
+            }
+
+            div {
+                h3 {
+                    font-family: var(--fontJ);
+                    font-size: 1rem;
+                    margin-top: 10px;
+                }
+
+                p {
+                    text-align: right;
+                }
+            }
+        }
+    }
 }

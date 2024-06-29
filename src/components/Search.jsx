@@ -43,7 +43,7 @@ const Search = () => {
             }));
 
             setYoutubeResults(results); // 검색 결과를 상태에 저장합니다.
-            
+
             // JSON 파일로 저장 (예시: 콘솔에 출력)
             console.log(JSON.stringify(results, null, 2));
         } catch (error) {
@@ -56,9 +56,9 @@ const Search = () => {
             <label htmlFor="searchInput">
                 <LuSearch /> {/* 검색 아이콘을 표시합니다. */}
             </label>
-            <input 
-                type="text" 
-                placeholder="Search" 
+            <input
+                type="text"
+                placeholder="Search"
                 id="searchInput"
                 // 검색 입력이 변경될 때마다 검색 키워드 상태를 업데이트합니다.
                 onChange={e => setSearchKeyword(e.target.value)}
